@@ -18,11 +18,11 @@ public class CredentialTabPage {
     @FindBy(id = "add-credential")
     private WebElement addButton;
 
-    @FindBy(id = "edit-credential")
-    private List<WebElement> editButton;
+    @FindBy(className = "edit-cr-button")
+    private WebElement editButton;
 
     @FindBy(id = "delete-credential")
-    private List<WebElement> deleteButton;
+    private WebElement deleteButton;
 
     @FindBy(id = "credUrl")
     private List<WebElement> urlList;
@@ -102,7 +102,7 @@ public class CredentialTabPage {
 
         wait.until(ExpectedConditions.visibilityOf(navCredential)).click();
 
-        wait.until(ExpectedConditions.visibilityOf(editButton.get(0))).click();
+        wait.until(ExpectedConditions.visibilityOf(editButton)).click();
 
         wait.until(ExpectedConditions.visibilityOf(inputUrl));
         inputUrl.clear();
@@ -124,7 +124,7 @@ public class CredentialTabPage {
 
         wait.until(ExpectedConditions.visibilityOf(navCredential)).click();
 
-        wait.until(ExpectedConditions.visibilityOf(deleteButton.get(0))).click();
+        wait.until(ExpectedConditions.visibilityOf(deleteButton)).click();
     }
 
 }

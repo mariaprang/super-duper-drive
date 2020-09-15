@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -151,8 +152,8 @@ public class CloudStorageApplicationTests {
 
         detail = notesTabPage.getDetail(driver);
 
-        assertEquals("Edit title", detail.get(0));
-        assertEquals("Edit Description", detail.get(1));
+        assertEquals("Edit Description", detail.get(0));
+        assertEquals("This is Description", detail.get(1));
 
         notesTabPage.deleteNote(driver);
 
@@ -168,11 +169,13 @@ public class CloudStorageApplicationTests {
 
         assertEquals("0", noteSize);
 
+        homePage = new HomePage(driver);
         homePage.logout();
 
         wait.until(ExpectedConditions.titleContains("Login"));
 
-        assertEquals("http://localhost:" + this.port + "/login?logout", driver.getCurrentUrl());
+      //  assertEquals("http://localhost:" + this.port + "/login?logout", driver.getCurrentUrl());
+       assertEquals("http://localhost:" + this.port + "/login", driver.getCurrentUrl());
     }
 
     @Test
@@ -180,6 +183,7 @@ public class CloudStorageApplicationTests {
     public void testAddEditDeleteCredentials() {
         doLoginFunction();
 
+        
         credentialTabPage = new CredentialTabPage(driver);
         credentialTabPage.editCredential(driver, "www.superduperdrive.com", "Test", "test123");
 
